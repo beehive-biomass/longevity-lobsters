@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en"><head><script>window.__resources = {"https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js":"assets/d949f1c3687a.js","https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js":"assets/35f4f974f4b2.js"};</script>
+<meta charset="utf-8">
+<title>Information architecture and sitemap</title>
+<script src="assets/ffb137b73e18.js"></script>
+<style>/* LONGevity LOBsters · the shell, the tide, the kelp, the coral. one light theme on warm sand. */
+:root{
+  --sand:#f6f1e8;--card:#ffffff;--well:#ece5d8;--line:#e1d9cb;--line-soft:#ede7dc;
+  --ink:#0e1f24;--ink-mut:#4b5f63;--ink-dim:#6b7a7d;
+  --deep:#15484f;--tide:#3f7f9a;--tide-wash:#e3eff3;
+  --kelp:#2f6b4f;--kelp-wash:#e2efe7;
+  --coral:#d8472b;--coral-deep:#a83419;--on-coral:#ffffff;
+  --shell:#b8865a;--shell-wash:#f3e9db;
+  --held:#4f5f8a;--held-wash:#e9ecf4;
+  --face:"Manrope","Sarabun",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"DM Serif Display","Sarabun",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--face)}
+a{color:var(--tide)}a:hover{color:var(--deep)}
+.btn-primary{display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;box-sizing:border-box;padding:0 18px;border:0;border-radius:16px;background:var(--coral);color:var(--on-coral);font:600 17px/1.2 var(--face);text-decoration:none;cursor:pointer}
+.btn-primary:hover{background:var(--coral-deep)}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;min-height:48px;box-sizing:border-box;padding:0 22px;border:1.5px solid var(--ink);border-radius:14px;background:transparent;color:var(--ink);font:600 16px/1.2 var(--face);text-decoration:none;cursor:pointer}
+.btn-quiet{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;border:0;background:transparent;color:var(--tide);font:600 15px/1.2 var(--face);text-decoration:none;cursor:pointer}
+.btn-quiet--under{text-decoration:underline;text-underline-offset:3px}
+.card{box-sizing:border-box;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.list{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;box-sizing:border-box;margin:0;padding:8px 16px;border:0;border-top:1px solid var(--line-soft);background:transparent;color:var(--ink);font:500 16px/1.4 var(--face);text-align:start;text-decoration:none}
+.row:first-child{border-top:0}
+a.row,button.row{cursor:pointer}
+a.row:hover,button.row:hover{background:var(--sand)}
+.row-v{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink-mut);text-align:end}
+.row--held .row-v{color:var(--held)}
+.row--open{background:var(--tide-wash)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font:600 14px/1.4 var(--face)}
+.chip--ok{background:var(--kelp-wash);color:var(--kelp)}
+.chip--held{background:var(--held-wash);color:var(--held)}
+.chip--sample{background:var(--shell-wash);color:#8a5f36}
+.chip--tide{background:var(--tide-wash);color:var(--deep)}
+.held-note{display:flex;align-items:center;gap:10px;min-height:44px;box-sizing:border-box;padding:8px 14px;border-radius:12px;background:var(--held-wash);color:var(--held);font:600 15px/1.4 var(--face)}
+.plain{display:flex;flex-direction:column;gap:2px;box-sizing:border-box;padding:12px 14px;border:1px dashed var(--ink-dim);border-radius:12px;color:var(--ink-mut);font-size:14px}
+.plain-head{display:flex;justify-content:space-between;gap:12px;font-size:16px}
+.plain-name{font-weight:600;color:var(--ink)}
+.tog{display:flex;gap:4px;padding:4px;background:var(--well);border-radius:999px}
+.tog button{appearance:none;border:0;margin:0;min-width:44px;height:36px;padding:0 12px;border-radius:999px;background:transparent;color:var(--ink-mut);font:600 14px/1 var(--face);cursor:pointer}
+.tog button[aria-pressed="true"]{background:var(--deep);color:#ffffff}
+.pill{appearance:none;border:1.5px solid var(--line);margin:0;min-height:44px;padding:0 16px;border-radius:999px;background:var(--card);color:var(--ink);font:500 16px/1.2 var(--face);cursor:pointer}
+.pill[aria-pressed="true"]{border-color:var(--coral);background:#fbe6e0;color:var(--coral-deep);font-weight:600}
+.input{box-sizing:border-box;width:100%;min-height:52px;padding:0 16px;border:1.5px solid var(--ink);border-radius:12px;background:var(--card);color:var(--ink);font:400 16px/1.2 var(--face)}
+.lab{display:block;font-size:14px;font-weight:600;color:var(--ink-mut);margin-bottom:6px}
+.name{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);color:var(--deep);text-decoration:none;white-space:nowrap}
+.gauge{display:flex;flex-direction:column;gap:2px;box-sizing:border-box;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.gauge-k{font-size:14px;font-weight:600;color:var(--tide)}
+.gauge-v{font-family:var(--display);font-size:32px;line-height:1}
+.gauge-n{font-size:14px;color:var(--ink-mut)}
+.nav a{min-height:44px;display:flex;align-items:center;padding:0 12px;border-radius:12px;color:var(--ink);text-decoration:none;font-weight:500}
+.nav a[aria-current="page"]{background:var(--tide-wash);color:var(--deep);font-weight:600}
+</style>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>/* latin-ext */
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/dmserifdisplay/v17/-nFnOHM81r4j6k0gjAW3mujVU2B2G_5x0ujy.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fdf61e20fd2c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwhsk.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwhsk.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwhsk.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwhsk.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwhsk.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/83c005d49d8a.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwhsk.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwhsk.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwhsk.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwhsk.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwhsk.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/83c005d49d8a.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggqxSuXd.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggOxSuXd.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggSxSuXd.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggixSuXd.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggmxSuXd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/a30ddcd34970.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggqxSuXd.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggOxSuXd.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggSxSuXd.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggixSuXd.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggmxSuXd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/a30ddcd34970.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggqxSuXd.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggOxSuXd.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggSxSuXd.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggixSuXd.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggmxSuXd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/a30ddcd34970.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggqxSuXd.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggOxSuXd.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggSxSuXd.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggixSuXd.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggmxSuXd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/a30ddcd34970.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* thai */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/444ccfffc6e9.woff2") format('woff2');
+  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/sarabun/v17/DtVjJx26TKEr37c9aBpJn2QN.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/sarabun/v17/DtVjJx26TKEr37c9aBtJn2QN.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/045485345106.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* thai */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/5f2b031bab77.woff2") format('woff2');
+  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/sarabun/v17/DtVmJx26TKEr37c9YMptilQs6zDX.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/sarabun/v17/DtVmJx26TKEr37c9YMptilUs6zDX.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/f7ce52775a10.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: 1600px; height: 1000px; background: var(--sand); color: var(--ink); font-family: var(--face); font-size: 16px; line-height: 1.45">
+<svg width="8" height="54" sc-camel-view-box="0 0 8 54" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 796px; top: 222px; width: 8px; height: 54px; overflow: visible; fill: none; stroke: #4b5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M 4 0 L 4 54"></path></svg>
+<svg width="1152" height="8" sc-camel-view-box="0 0 1152 8" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 224px; top: 272px; width: 1152px; height: 8px; overflow: visible; fill: none; stroke: #4b5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M 0 4 L 1152 4"></path></svg>
+<svg width="8" height="52" sc-camel-view-box="0 0 8 52" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 220px; top: 276px; width: 8px; height: 52px; overflow: visible; fill: none; stroke: #4b5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#4b5f63" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 4 0 L 4 52" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="8" height="52" sc-camel-view-box="0 0 8 52" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 508px; top: 276px; width: 8px; height: 52px; overflow: visible; fill: none; stroke: #4b5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#4b5f63" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 4 0 L 4 52" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="8" height="52" sc-camel-view-box="0 0 8 52" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 796px; top: 276px; width: 8px; height: 52px; overflow: visible; fill: none; stroke: #4b5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#4b5f63" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 4 0 L 4 52" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="8" height="52" sc-camel-view-box="0 0 8 52" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 1084px; top: 276px; width: 8px; height: 52px; overflow: visible; fill: none; stroke: #4b5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#4b5f63" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 4 0 L 4 52" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="8" height="52" sc-camel-view-box="0 0 8 52" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 1372px; top: 276px; width: 8px; height: 52px; overflow: visible; fill: none; stroke: #4b5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#4b5f63" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 4 0 L 4 52" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="46" height="8" sc-camel-view-box="0 0 46 8" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 344px; top: 362px; width: 46px; height: 8px; overflow: visible; fill: none; stroke: #d8472b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#d8472b" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 0 4 L 46 4" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="46" height="8" sc-camel-view-box="0 0 46 8" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 632px; top: 362px; width: 46px; height: 8px; overflow: visible; fill: none; stroke: #d8472b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#d8472b" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 0 4 L 46 4" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="46" height="8" sc-camel-view-box="0 0 46 8" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 920px; top: 362px; width: 46px; height: 8px; overflow: visible; fill: none; stroke: #d8472b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled" orient="auto" sc-camel-marker-width="5" sc-camel-marker-height="5" sc-camel-ref-x="3.2" sc-camel-ref-y="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#d8472b" stroke="none" style="fill: context-stroke"></path></marker></defs><path d="M 0 4 L 46 4" marker-end="url(#dc-arrow-head-filled)"></path></svg>
+<svg width="8" height="48" sc-camel-view-box="0 0 8 48" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 220px; top: 402px; width: 8px; height: 48px; overflow: visible; fill: none; stroke: #e1d9cb; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M 4 0 L 4 48"></path></svg>
+<svg width="8" height="48" sc-camel-view-box="0 0 8 48" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 508px; top: 402px; width: 8px; height: 48px; overflow: visible; fill: none; stroke: #e1d9cb; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M 4 0 L 4 48"></path></svg>
+<svg width="8" height="48" sc-camel-view-box="0 0 8 48" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 796px; top: 402px; width: 8px; height: 48px; overflow: visible; fill: none; stroke: #e1d9cb; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M 4 0 L 4 48"></path></svg>
+<svg width="8" height="48" sc-camel-view-box="0 0 8 48" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 1084px; top: 402px; width: 8px; height: 48px; overflow: visible; fill: none; stroke: #e1d9cb; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M 4 0 L 4 48"></path></svg>
+<svg width="8" height="48" sc-camel-view-box="0 0 8 48" sc-camel-preserve-aspect-ratio="none" style="position: absolute; left: 1372px; top: 402px; width: 8px; height: 48px; overflow: visible; fill: none; stroke: #e1d9cb; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M 4 0 L 4 48"></path></svg>
+
+<div style="position: absolute; left: 64px; top: 56px; font-family: var(--display); font-size: 40px; line-height: 1.05; color: var(--deep)">Information architecture · genesis MVP</div>
+<div style="position: absolute; left: 64px; top: 108px; font-size: 16px; color: var(--ink-mut)">Five doors, one join, one me, one reef, one library. The coral arrows are the path a stranger walks.</div>
+
+<div style="position: absolute; left: 640px; top: 150px; width: 320px; height: 72px; box-sizing: border-box; padding: 8px; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--card); border: 1.5px solid var(--deep); border-radius: 12px"><span><b style="font-family: var(--display); font-weight: 400; font-size: 22px; color: var(--deep)">LONGevity LOBsters</b><br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/ · the sovereign longevity hub</span></span></div>
+
+<div style="position: absolute; left: 104px; top: 330px; width: 240px; height: 72px; box-sizing: border-box; padding: 8px; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--card); border: 1.5px solid var(--kelp); border-radius: 12px"><span><b style="color: var(--kelp)">The doors</b><br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/gift · five gifts, no account</span></span></div>
+<div style="position: absolute; left: 392px; top: 330px; width: 240px; height: 72px; box-sizing: border-box; padding: 8px; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--card); border: 1.5px solid var(--coral); border-radius: 12px"><span><b style="color: var(--coral-deep)">Join</b><br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/join · one question at a time</span></span></div>
+<div style="position: absolute; left: 680px; top: 330px; width: 240px; height: 72px; box-sizing: border-box; padding: 8px; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--card); border: 1.5px solid var(--tide); border-radius: 12px"><span><b style="color: var(--tide)">Me</b><br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/me · your telemetry dashboard</span></span></div>
+<div style="position: absolute; left: 968px; top: 330px; width: 240px; height: 72px; box-sizing: border-box; padding: 8px; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--card); border: 1.5px solid var(--shell); border-radius: 12px"><span><b style="color: #8a5f36">The reef</b><br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/reef · the community</span></span></div>
+<div style="position: absolute; left: 1256px; top: 330px; width: 240px; height: 72px; box-sizing: border-box; padding: 8px; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--card); border: 1.5px solid var(--deep); border-radius: 12px"><span><b style="color: var(--deep)">Learn</b><br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/learn · reads without an account</span></span></div>
+
+<div style="position: absolute; left: 104px; top: 450px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>After the rave<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/gift/after-the-rave</span></span></div>
+<div style="position: absolute; left: 104px; top: 530px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Yoga &amp; movement<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/gift/move</span></span></div>
+<div style="position: absolute; left: 104px; top: 610px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Thai bodywork practitioners<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/gift/hands</span></span></div>
+<div style="position: absolute; left: 104px; top: 690px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Muay Thai &amp; combat sports<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/gift/fight</span></span></div>
+<div style="position: absolute; left: 104px; top: 770px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Longevity travellers<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/gift/travel</span></span></div>
+
+<div style="position: absolute; left: 392px; top: 450px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Claim your gift<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/join/gift</span></span></div>
+<div style="position: absolute; left: 392px; top: 530px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>LINE id or your own key<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/join/id</span></span></div>
+<div style="position: absolute; left: 392px; top: 610px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Healthspan intake<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/join/intake · 8 questions</span></span></div>
+<div style="position: absolute; left: 392px; top: 690px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Your shell · your data, your keys<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/join/shell · private vs sovereign</span></span></div>
+<div style="position: absolute; left: 392px; top: 770px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Wearables &amp; monitors<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/join/sync</span></span></div>
+
+<div style="position: absolute; left: 680px; top: 450px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Today<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/me · HRV · sleep · glucose · recovery</span></span></div>
+<div style="position: absolute; left: 680px; top: 530px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Trajectory<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/me/trajectory · 5-year projection</span></span></div>
+<div style="position: absolute; left: 680px; top: 610px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Regimen<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/me/regimen · foods · peptides · milestones</span></span></div>
+<div style="position: absolute; left: 680px; top: 690px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Shell &amp; consent<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/me/shell · who sees what</span></span></div>
+<div style="position: absolute; left: 680px; top: 770px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>My coach<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/me/coach · peptide coaching thread</span></span></div>
+
+<div style="position: absolute; left: 968px; top: 450px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Pools<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/reef · one pool per door</span></span></div>
+<div style="position: absolute; left: 968px; top: 530px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>A thread<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/reef/[pool]/[thread]</span></span></div>
+<div style="position: absolute; left: 968px; top: 610px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Coaches &amp; practitioners<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/reef/people</span></span></div>
+<div style="position: absolute; left: 968px; top: 690px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>LOBster · the predictive agent<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/reef/lobster</span></span></div>
+
+<div style="position: absolute; left: 1256px; top: 450px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Protocols library<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/learn · the five gifts, in full</span></span></div>
+<div style="position: absolute; left: 1256px; top: 530px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Peptides · research status<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/learn/peptides/[name]</span></span></div>
+<div style="position: absolute; left: 1256px; top: 610px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Hemp hearts &amp; cannabinoids<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/learn/plants</span></span></div>
+<div style="position: absolute; left: 1256px; top: 690px; width: 240px; height: 64px; box-sizing: border-box; padding: 8px 12px; display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px"><span>Root cause, explained<br><span style="font-family: var(--mono); font-size: 13px; color: var(--ink-mut)">/learn/root-cause</span></span></div>
+
+<div style="position: absolute; left: 64px; top: 880px; width: 1472px; font-size: 14px; line-height: 1.5; color: var(--ink-mut)">Every masthead carries the name and the tongue toggle (EN · ไทย). One coral action per screen. /learn and /gift read without an account; /join asks one question at a time; /me is behind the person's own key, sealed in their shell on the sovereign data layer. Nothing a peptide page says is a treatment claim — research status is shown as a chip with its source and date.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+
+
+</body></html>

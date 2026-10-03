@@ -56,6 +56,22 @@ a.row:hover,button.row:hover{background:var(--sand)}
 .nav a{min-height:44px;display:flex;align-items:center;padding:0 12px;border-radius:12px;color:var(--ink);text-decoration:none;font-weight:500}
 .nav a[aria-current="page"]{background:var(--tide-wash);color:var(--deep);font-weight:600}
 </style>
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#f6f1e8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LONGevity LOBsters">
+<meta property="og:title" content="Join: how should we know you">
+<meta property="og:description" content="เข้าร่วมทางไลน์ หรือใช้คีย์ของคุณเอง · Join on LINE, or bring your own key.">
+<meta property="og:url" content="https://beehive-biomass.github.io/longevity-lobsters/pages/03-3-join.html">
+<meta property="og:image" content="https://beehive-biomass.github.io/longevity-lobsters/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="th_TH">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 <x-dc>
@@ -504,4 +520,43 @@ renderVals() { return {}; }
 </script>
 
 
+
+<script>
+/* LOB i18n retrofit: text-node dictionary, binds the existing EN/ไทย toggle. */
+(function () {
+  var D = {"How should we know you?":"จะให้เรารู้จักคุณอย่างไร?","One door is enough. You can add the other later.":"ประตูเดียวก็พอ เพิ่มอีกบานได้ทีหลัง","Your LINE id":"ไลน์ไอดีของคุณ","We send the protocol and your coach's notes here. We never read your messages.":"เราส่งโปรโตคอลและโน้ตจากโค้ชของคุณที่นี่ เราไม่อ่านข้อความของคุณเด็ดขาด","or":"หรือ","Make my own key — held only by me":"สร้างคีย์ของตัวเอง — มีแต่ฉันที่ถือ","Your own key is your identity on the network. No company holds it, no password to reset. It is what your shell is sealed to.":"คีย์ของคุณเองคือตัวตนของคุณบนเครือข่าย ไม่มีบริษัทไหนถือมัน ไม่มีพาสเวิร์ดให้ต้องรีเซ็ต เปลือกของคุณผนึกด้วยสิ่งนี้","Your id is a door, not a profile. Nothing about you is stored yet.":"ไอดีของคุณคือประตู ไม่ใช่โปรไฟล์ ยังไม่มีอะไรของคุณถูกเก็บเลย","Email":"อีเมล","not available yet":"ยังไม่เปิดใช้","LINE and your own key are the two doors at genesis. Email follows later.":"ไลน์และคีย์ของตัวเองคือสองประตูในช่วงเริ่มต้น อีเมลมาทีหลัง","Continue with LINE":"ดำเนินการต่อด้วยไลน์"};
+  var R = {}; Object.keys(D).forEach(function (k) { R[D[k]] = k; });
+  var T = {"en":"Join: how should we know you","th":"เข้าร่วม: จะให้เรารู้จักคุณอย่างไร"};
+  var L = localStorage.getItem('lob-lang') || 'en';
+  function walk(fn) {
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n;
+    while ((n = w.nextNode())) {
+      var k = n.nodeValue.trim();
+      if (D[k] || R[k]) fn(n, k);
+    }
+  }
+  function setLang(lang) {
+    L = lang; localStorage.setItem('lob-lang', lang);
+    var b = document.querySelectorAll('.tog button');
+    if (b.length >= 2) {
+      b[0].setAttribute('aria-pressed', String(lang === 'en'));
+      b[1].setAttribute('aria-pressed', String(lang === 'th'));
+    }
+    walk(function (n, k) {
+      var to = lang === 'th' ? D[k] : R[k];
+      if (to) n.nodeValue = n.nodeValue.replace(k, to);
+    });
+    document.title = T[lang];
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target && e.target.closest ? e.target.closest('.tog button') : null;
+    if (!b) return;
+    var btns = document.querySelectorAll('.tog button');
+    if (b === btns[0]) setLang('en');
+    else if (b === btns[1]) setLang('th');
+  });
+  setLang(L);
+})();
+</script>
 </body></html>

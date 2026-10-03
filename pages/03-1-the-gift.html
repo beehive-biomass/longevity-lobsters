@@ -56,6 +56,22 @@ a.row:hover,button.row:hover{background:var(--sand)}
 .nav a{min-height:44px;display:flex;align-items:center;padding:0 12px;border-radius:12px;color:var(--ink);text-decoration:none;font-weight:500}
 .nav a[aria-current="page"]{background:var(--tide-wash);color:var(--deep);font-weight:600}
 </style>
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#f6f1e8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LONGevity LOBsters">
+<meta property="og:title" content="The gift: after the rave">
+<meta property="og:description" content="ของขวัญสำหรับเช้าวันหลังเต้น — คู่มือ 72 ชั่วโมง ไม่ต้องสมัคร ไม่ต้องใช้อีเมล ไม่มีอะไรต้องซื้อ · A gift for after the rave. No account, no email, nothing to buy.">
+<meta property="og:url" content="https://beehive-biomass.github.io/longevity-lobsters/pages/03-1-the-gift.html">
+<meta property="og:image" content="https://beehive-biomass.github.io/longevity-lobsters/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="th_TH">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 <x-dc>
@@ -505,4 +521,43 @@ renderVals() { return {}; }
 </script>
 
 
+
+<script>
+/* LOB i18n retrofit: text-node dictionary, binds the existing EN/ไทย toggle. */
+(function () {
+  var D = {"A gift · no account, no email, nothing to buy":"ของขวัญ · ไม่ต้องสมัคร ไม่ต้องใช้อีเมล ไม่มีอะไรต้องซื้อ","After the rave":"หลังคืนเต้น","The post-event mitochondrial recovery and neuro-restoration protocol. Written from root-cause functional medicine, for people who dance all night and want to feel whole by Monday. Think of it as a molt: shed the night, soften, harden.":"โปรโตคอลฟื้นฟูไมโทคอนเดรียและระบบประสาทหลังคืนเต้น เขียนจากมุม functional medicine ที่ดูที่ต้นตอ สำหรับคนเต้นทั้งคืนแล้วอยากกลับมาเป็นปกติภายในวันจันทร์ คิดง่าย ๆ ว่าเป็นการลอกคราบ: สลัดคืนทิ้ง นุ่มลง แล้วแข็งแรงขึ้น","The night of":"คืนนั้น","hydration · what not to mix":"น้ำ · อะไรห้ามผสมกัน","The next morning":"เช้าวันถัดไป","light · movement · hemp hearts":"แสง · การเคลื่อนไหว · เมล็ดกัญชง","The 72 hours":"72 ชั่วโมง","sleep debt · HRV · when to rest":"หนี้การนอน · HRV · พักเมื่อไหร่","No peptides in this gift, no supplements to order. Plant food, light and rest, in the order that works.":"ของขวัญนี้ไม่มีเปปไทด์ ไม่มีอาหารเสริมให้ต้องสั่ง มีแต่อาหารจากพืช แสง และการพักผ่อน เรียงลำดับให้แล้วในแบบที่ได้ผลจริง","Send me the gift":"ส่งของขวัญมาให้ฉัน","Read it here first":"อ่านก่อนได้ที่นี่"};
+  var R = {}; Object.keys(D).forEach(function (k) { R[D[k]] = k; });
+  var T = {"en":"The gift: after the rave","th":"ของขวัญ: หลังคืนเต้น"};
+  var L = localStorage.getItem('lob-lang') || 'en';
+  function walk(fn) {
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n;
+    while ((n = w.nextNode())) {
+      var k = n.nodeValue.trim();
+      if (D[k] || R[k]) fn(n, k);
+    }
+  }
+  function setLang(lang) {
+    L = lang; localStorage.setItem('lob-lang', lang);
+    var b = document.querySelectorAll('.tog button');
+    if (b.length >= 2) {
+      b[0].setAttribute('aria-pressed', String(lang === 'en'));
+      b[1].setAttribute('aria-pressed', String(lang === 'th'));
+    }
+    walk(function (n, k) {
+      var to = lang === 'th' ? D[k] : R[k];
+      if (to) n.nodeValue = n.nodeValue.replace(k, to);
+    });
+    document.title = T[lang];
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target && e.target.closest ? e.target.closest('.tog button') : null;
+    if (!b) return;
+    var btns = document.querySelectorAll('.tog button');
+    if (b === btns[0]) setLang('en');
+    else if (b === btns[1]) setLang('th');
+  });
+  setLang(L);
+})();
+</script>
 </body></html>

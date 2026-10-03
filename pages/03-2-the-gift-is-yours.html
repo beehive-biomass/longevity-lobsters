@@ -56,6 +56,22 @@ a.row:hover,button.row:hover{background:var(--sand)}
 .nav a{min-height:44px;display:flex;align-items:center;padding:0 12px;border-radius:12px;color:var(--ink);text-decoration:none;font-weight:500}
 .nav a[aria-current="page"]{background:var(--tide-wash);color:var(--deep);font-weight:600}
 </style>
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#f6f1e8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LONGevity LOBsters">
+<meta property="og:title" content="The gift is yours">
+<meta property="og:description" content="ของขวัญเป็นของคุณแล้ว — อ่านเลย แล้วค่อยตัดสินใจ · The gift is yours — read it first, decide later.">
+<meta property="og:url" content="https://beehive-biomass.github.io/longevity-lobsters/pages/03-2-the-gift-is-yours.html">
+<meta property="og:image" content="https://beehive-biomass.github.io/longevity-lobsters/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="th_TH">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 <x-dc>
@@ -511,4 +527,43 @@ renderVals() { return {}; }
 </script>
 
 
+
+<script>
+/* LOB i18n retrofit: text-node dictionary, binds the existing EN/ไทย toggle. */
+(function () {
+  var D = {"The gift is yours · kept on this phone":"ของขวัญเป็นของคุณแล้ว · เก็บไว้ในเครื่องนี้","Your recovery, by the hour":"การฟื้นตัวของคุณ ชั่วโมงต่อชั่วโมง","The night of":"คืนนั้น","3 steps":"3 ขั้น","The next morning":"เช้าวันถัดไป","4 steps":"4 ขั้น","The 72 hours":"72 ชั่วโมง","5 steps":"5 ขั้น","Why it works · the root cause":"ทำไมมันได้ผล · ที่ต้นตอ","read":"อ่าน","Go further: watch your real recovery":"ไปต่อ: ดูการฟื้นตัวจริงของคุณ","Connect a ring or your phone's health data and see your HRV come back after a night out — and what the protocol changes. Your numbers stay yours, inside your own shell, on your own key.":"ต่อแหวนหรือข้อมูลสุขภาพจากมือถือของคุณ ดู HRV ค่อย ๆ กลับมาหลังคืนที่ออกไปเที่ยว — และโปรโตคอลเปลี่ยนอะไร ตัวเลขของคุณยังเป็นของคุณ อยู่ในเปลือกของคุณเอง บนคีย์ของคุณเอง","Track my recovery":"ติดตามการฟื้นตัวของฉัน","Not now — the gift is enough":"ไว้ก่อน — ของขวัญก็พอแล้ว"};
+  var R = {}; Object.keys(D).forEach(function (k) { R[D[k]] = k; });
+  var T = {"en":"The gift is yours","th":"ของขวัญเป็นของคุณแล้ว"};
+  var L = localStorage.getItem('lob-lang') || 'en';
+  function walk(fn) {
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n;
+    while ((n = w.nextNode())) {
+      var k = n.nodeValue.trim();
+      if (D[k] || R[k]) fn(n, k);
+    }
+  }
+  function setLang(lang) {
+    L = lang; localStorage.setItem('lob-lang', lang);
+    var b = document.querySelectorAll('.tog button');
+    if (b.length >= 2) {
+      b[0].setAttribute('aria-pressed', String(lang === 'en'));
+      b[1].setAttribute('aria-pressed', String(lang === 'th'));
+    }
+    walk(function (n, k) {
+      var to = lang === 'th' ? D[k] : R[k];
+      if (to) n.nodeValue = n.nodeValue.replace(k, to);
+    });
+    document.title = T[lang];
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target && e.target.closest ? e.target.closest('.tog button') : null;
+    if (!b) return;
+    var btns = document.querySelectorAll('.tog button');
+    if (b === btns[0]) setLang('en');
+    else if (b === btns[1]) setLang('th');
+  });
+  setLang(L);
+})();
+</script>
 </body></html>

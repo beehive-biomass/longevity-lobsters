@@ -3,28 +3,87 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LONGevity LOBsters · genesis MVP</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#f6f1e8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LONGevity LOBsters">
+<meta property="og:title" content="LONGevity LOBsters · genesis MVP">
+<meta property="og:description" content="The genesis MVP review board — thirteen screens: IA, design system, the seven-screen mobile flow, the daily-use layer.">
+<meta property="og:url" content="https://beehive-biomass.github.io/longevity-lobsters/">
+<meta property="og:image" content="https://beehive-biomass.github.io/longevity-lobsters/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="th_TH">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-html{background:#f5f4ef;color:#1f1e1d;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
-body{margin:0;padding:48px;display:flex;flex-direction:column;align-items:flex-start;gap:48px}
-.board h2{margin:0 0 12px;font-size:13px;font-weight:500;color:#6b6a68}
-.board iframe{display:block;border:0;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #faf9f5; color: #0e1f24; font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { padding: 44px 24px 12px; max-width: 1680px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: Georgia, serif; font-size: 24px; color: #15484f; text-decoration: none; }
+.tag { font-size: 15px; color: #4b5f63; max-width: 640px; }
+.tag b { color: #15484f; }
+.hdr-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13.5px; }
+.hdr-links a { color: #3f7f9a; text-decoration: none; }
+.hdr-links a:hover { color: #15484f; text-decoration: underline; }
+.boards { max-width: 1680px; margin: 0 auto; padding: 16px 24px 64px; display: flex; flex-direction: column; gap: 48px; }
+.board h2 { margin: 0 0 12px; font-size: 13px; font-weight: 500; color: #6b6a68; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.board h2 a { font-size: 12.5px; color: #3f7f9a; text-decoration: none; white-space: nowrap; }
+.board h2 a:hover { text-decoration: underline; }
+.board .frame { width: fit-content; max-width: 100%; overflow: hidden; }
+.board iframe { display: block; border: 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.12); transform-origin: top left; }
+footer { max-width: 1680px; margin: 0 auto; padding: 0 24px 48px; color: #6b6a68; font-size: 12.5px; }
+footer a { color: #3f7f9a; }
 </style>
 </head>
 <body>
-<section class="board"><h2>1 · information architecture &amp; sitemap</h2><iframe src="pages/01-sitemap.html" title="1 · information architecture &amp; sitemap" width="1600" height="1000" loading="eager" style="width:1600px;height:1000px"></iframe></section>
-<section class="board"><h2>2 · design system specification</h2><iframe src="pages/02-design-system.html" title="2 · design system specification" width="1440" height="1720" loading="eager" style="width:1440px;height:1720px"></iframe></section>
-<section class="board"><h2>3.1 · the gift (ad lands here)</h2><iframe src="pages/03-1-the-gift.html" title="3.1 · the gift (ad lands here)" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>3.2 · the gift is yours</h2><iframe src="pages/03-2-the-gift-is-yours.html" title="3.2 · the gift is yours" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>3.3 · join · LINE or your own key</h2><iframe src="pages/03-3-join.html" title="3.3 · join · LINE or your own key" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>3.4 · intake · one question at a time</h2><iframe src="pages/03-4-intake.html" title="3.4 · intake · one question at a time" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>3.5 · your shell · your data, your keys</h2><iframe src="pages/03-5-your-shell.html" title="3.5 · your shell · your data, your keys" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>3.6 · bring your numbers</h2><iframe src="pages/03-6-bring-your-numbers.html" title="3.6 · bring your numbers" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>3.7 · me · the telemetry dashboard</h2><iframe src="pages/03-7-me-telemetry.html" title="3.7 · me · the telemetry dashboard" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>4 · me on desktop · modular cards</h2><iframe src="pages/04-me-desktop.html" title="4 · me on desktop · modular cards" width="1280" height="1040" loading="eager" style="width:1280px;height:1040px"></iframe></section>
-
-
-<section class="board"><h2>5 · your hub · the clock, the cycle, the engine</h2><iframe src="pages/05-your-hub.html" title="5 · your hub · the clock, the cycle, the engine" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>6 · the coach&#39;s morning · evaluate the roster</h2><iframe src="pages/06-coach-console.html" title="6 · the coach&#39;s morning" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-<section class="board"><h2>7 · the return · income &amp; free time</h2><iframe src="pages/07-the-return.html" title="7 · the return · income and free time" width="390" height="844" loading="eager" style="width:390px;height:844px"></iframe></section>
-
+<header>
+  <a class="brand" href="https://beehive-biomass.github.io/longevity-lobsters/">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9" stroke="#d8472b"></path><path d="M12 8a4 4 0 1 0 4 4" stroke="#2f6b4f"></path></svg>
+    LONGevity LOBsters · genesis MVP
+  </a>
+  <div class="tag"><b>The molt, not the hangover.</b> ลอกคราบหลังเต้น — กลับตัวใน 72 ชั่วโมง · Thirteen boards: IA, design system, the seven-screen mobile flow (gift → claim → join → intake → shell → numbers → me), and the daily-use layer — hub, coach console, the return.</div>
+  <div class="hdr-links">
+    <a href="pages/03-1-the-gift.html">🎁 start the flow</a>
+    <a href="pages/05-your-hub.html">🏠 your hub</a>
+    <a href="pages/06-coach-console.html">🧭 coach console</a>
+    <a href="pages/07-the-return.html">฿ the return</a>
+    <a href="https://github.com/beehive-biomass/longevity-lobsters">↗ source</a>
+  </div>
+</header>
+<div class="boards">
+<section class="board"><h2>1 · information architecture &amp; sitemap <a href="pages/01-sitemap.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/01-sitemap.html" title="1 · information architecture &amp; sitemap" width="1600" height="1000" loading="lazy" style="width:1600px;height:1000px"></iframe></div></section>
+<section class="board"><h2>2 · design system specification <a href="pages/02-design-system.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/02-design-system.html" title="2 · design system specification" width="1440" height="1720" loading="lazy" style="width:1440px;height:1720px"></iframe></div></section>
+<section class="board"><h2>3.1 · the gift (ad lands here) <a href="pages/03-1-the-gift.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/03-1-the-gift.html" title="3.1 · the gift (ad lands here)" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>3.2 · the gift is yours <a href="pages/03-2-the-gift-is-yours.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/03-2-the-gift-is-yours.html" title="3.2 · the gift is yours" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>3.3 · join · LINE or your own key <a href="pages/03-3-join.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/03-3-join.html" title="3.3 · join · LINE or your own key" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>3.4 · intake · one question at a time <a href="pages/03-4-intake.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/03-4-intake.html" title="3.4 · intake · one question at a time" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>3.5 · your shell · your data, your keys <a href="pages/03-5-your-shell.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/03-5-your-shell.html" title="3.5 · your shell · your data, your keys" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>3.6 · bring your numbers <a href="pages/03-6-bring-your-numbers.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/03-6-bring-your-numbers.html" title="3.6 · bring your numbers" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>3.7 · me · the telemetry dashboard <a href="pages/03-7-me-telemetry.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/03-7-me-telemetry.html" title="3.7 · me · the telemetry dashboard" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>4 · me on desktop · modular cards <a href="pages/04-me-desktop.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/04-me-desktop.html" title="4 · me on desktop · modular cards" width="1280" height="1040" loading="lazy" style="width:1280px;height:1040px"></iframe></div></section>
+<section class="board"><h2>5 · your hub · the clock, the cycle, the engine <a href="pages/05-your-hub.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/05-your-hub.html" title="5 · your hub · the clock, the cycle, the engine" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>6 · the coach&#39;s morning · evaluate the roster <a href="pages/06-coach-console.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/06-coach-console.html" title="6 · the coach&#39;s morning" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+<section class="board"><h2>7 · the return · income &amp; free time <a href="pages/07-the-return.html" target="_blank" rel="noopener">open ↗</a></h2><div class="frame"><iframe src="pages/07-the-return.html" title="7 · the return · income and free time" width="390" height="844" loading="lazy" style="width:390px;height:844px"></iframe></div></section>
+</div>
+<footer>beeHive biomass · <a href="https://github.com/beehive-biomass/longevity-lobsters">beehive-biomass/longevity-lobsters</a> · sample data throughout · ของขวัญก่อนเสมอ — the gift first, always.</footer>
+<script>
+// Shrink wide boards to fit narrow screens; native size on desktop.
+function fitBoards() {
+  document.querySelectorAll('.board .frame').forEach(function (frame) {
+    var iframe = frame.querySelector('iframe');
+    var w = parseInt(iframe.getAttribute('width'), 10) || 390;
+    var h = parseInt(iframe.getAttribute('height'), 10) || 844;
+    var avail = frame.parentElement.clientWidth - 48 || w;
+    var scale = Math.min(1, avail / w);
+    iframe.style.transform = 'scale(' + scale + ')';
+    frame.style.height = (h * scale) + 'px';
+  });
+}
+window.addEventListener('resize', fitBoards);
+window.addEventListener('load', fitBoards);
+fitBoards();
+</script>
 </body></html>

@@ -30,6 +30,30 @@ locally under `assets/`).
 | 3.6 | Bring your numbers | [`pages/03-6-bring-your-numbers.html`](pages/03-6-bring-your-numbers.html) |
 | 3.7 | Me · the telemetry dashboard | [`pages/03-7-me-telemetry.html`](pages/03-7-me-telemetry.html) |
 | 4 | Me on desktop · modular cards | [`pages/04-me-desktop.html`](pages/04-me-desktop.html) |
+| 5 | Your hub · anti-aging, endometriosis, gym & aerobic — one home | [`pages/05-your-hub.html`](pages/05-your-hub.html) |
+| 6 | The coach's morning · evaluate the roster's wearables in 5 minutes | [`pages/06-coach-console.html`](pages/06-coach-console.html) |
+| 7 | The return · income & free time the stack gives back | [`pages/07-the-return.html`](pages/07-the-return.html) |
+
+## The daily-use layer (screens 5–7)
+
+The seven screens above the fold are the funnel; screens 5–7 are what
+people **open every day** — built in the same design language, with a
+working EN/ไทย toggle (persisted), local Thai fonts, and real
+on-device logging:
+
+- **Your hub** — the user's own center: the clock (anti-aging telemetry:
+  bio-age, HRV, sleep debt), the cycle (endometriosis: phase strip,
+  30-second symptom quick-log with pain + triggers, stored on-device,
+  pattern insights, and a standing care note that logging prepares you
+  for your doctor — it never replaces them), and the engine
+  (recovery-adjusted gym & aerobic plan).
+- **The coach's morning** — the practitioner side: the roster's wearables
+  distilled into ready / watch / rest flags, per-client HRV-vs-baseline,
+  sleep, cycle context and adherence dots, private notes, and
+  suggested LINE nudges with one-tap copy — the 5-minute daily scan.
+- **The return** — the sustainability surface: funnel numbers
+  (gift → LINE → intake → roster), recurring income, hours reclaimed vs
+  1:1 coaching, and the hive path (clients who molt into coaches).
 
 ## Provenance
 

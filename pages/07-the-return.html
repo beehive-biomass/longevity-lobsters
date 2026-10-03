@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The return · income & free time</title>
+<style>/* LONGevity LOBsters · what the stack pays back. same tokens as the genesis boards. */
+@font-face{font-family:'Sarabun';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/444ccfffc6e9.woff2) format('woff2');unicode-range:U+02D7,U+0303,U+0331,U+0E01-0E5B,U+200C-200D,U+25CC}
+@font-face{font-family:'Sarabun';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/045485345106.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Sarabun';font-style:normal;font-weight:600;font-display:swap;src:url(../assets/5f2b031bab77.woff2) format('woff2');unicode-range:U+02D7,U+0303,U+0331,U+0E01-0E5B,U+200C-200D,U+25CC}
+@font-face{font-family:'Sarabun';font-style:normal;font-weight:600;font-display:swap;src:url(../assets/f7ce52775a10.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/a30ddcd34970.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:500 700;font-display:swap;src:url(../assets/a30ddcd34970.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fdf61e20fd2c.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url(../assets/83c005d49d8a.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --sand:#f6f1e8;--card:#ffffff;--well:#ece5d8;--line:#e1d9cb;--line-soft:#ede7dc;
+  --ink:#0e1f24;--ink-mut:#4b5f63;--ink-dim:#6b7a7d;
+  --deep:#15484f;--tide:#3f7f9a;--tide-wash:#e3eff3;
+  --kelp:#2f6b4f;--kelp-wash:#e2efe7;
+  --coral:#d8472b;--coral-deep:#a83419;--on-coral:#ffffff;
+  --shell:#b8865a;--shell-wash:#f3e9db;
+  --held:#4f5f8a;--held-wash:#e9ecf4;
+  --face:"Manrope","Sarabun",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"DM Serif Display","Sarabun",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#efe9dd;color:var(--ink);font-family:var(--face);display:flex;justify-content:center}
+a{color:var(--tide)}a:hover{color:var(--deep)}
+.phone{width:390px;min-height:844px;box-sizing:border-box;padding:18px 18px 0;display:flex;flex-direction:column;gap:12px;background:var(--sand);color:var(--ink);font-size:16px;line-height:1.45}
+.tog{display:flex;gap:4px;padding:4px;background:var(--well);border-radius:999px}
+.tog button{appearance:none;border:0;margin:0;min-width:44px;height:36px;padding:0 12px;border-radius:999px;background:transparent;color:var(--ink-mut);font:600 14px/1 var(--face);cursor:pointer}
+.tog button[aria-pressed="true"]{background:var(--deep);color:#ffffff}
+.name{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);color:var(--deep);text-decoration:none;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font:600 14px/1.4 var(--face)}
+.chip--sample{background:var(--shell-wash);color:#8a5f36}
+.chip--ok{background:var(--kelp-wash);color:var(--kelp)}
+.card{box-sizing:border-box;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.list{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;box-sizing:border-box;margin:0;padding:8px 16px;border:0;border-top:1px solid var(--line-soft);background:transparent;color:var(--ink);font:500 16px/1.4 var(--face);text-align:start;text-decoration:none}
+.row:first-child{border-top:0}
+.row-v{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink-mut);text-align:end}
+.gauge{display:flex;flex-direction:column;gap:2px;box-sizing:border-box;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.gauge-k{font-size:14px;font-weight:600;color:var(--tide)}
+.gauge-v{font-family:var(--display);font-size:32px;line-height:1}
+.gauge-n{font-size:14px;color:var(--ink-mut)}
+.btn-primary{display:flex;align-items:center;justify-content:center;width:100%;min-height:50px;box-sizing:border-box;padding:0 18px;border:0;border-radius:14px;background:var(--coral);color:var(--on-coral);font:600 16px/1.2 var(--face);text-decoration:none;cursor:pointer}
+.btn-primary:hover{background:var(--coral-deep)}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);margin-inline:-18px;margin-top:auto}
+.tabs a{min-height:56px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;text-decoration:none;color:var(--ink-mut)}
+.tabs a[aria-current="page"]{color:var(--deep);border-top:2px solid var(--deep)}
+.funnel{display:flex;flex-direction:column;gap:6px}
+.fstep{display:flex;align-items:center;gap:10px;font-size:14.5px}
+.fbar{position:relative;flex:1;height:26px;border-radius:8px;background:var(--well);overflow:hidden}
+.fbar i{position:absolute;inset:0 auto 0 0;border-radius:8px}
+.fnum{flex:none;width:44px;font:600 14px var(--mono);text-align:end}
+.money{font-family:var(--display);font-size:40px;line-height:1;color:var(--deep)}
+.hive{display:flex;flex-direction:column;gap:8px;padding:14px;background:var(--shell-wash);border:1px solid var(--shell);border-radius:18px}
+.spark{display:block;width:100%;overflow:visible}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+    <a href="03-1-the-gift.html" class="name" style="font-size:18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9" stroke="#d8472b"></path><path d="M12 8a4 4 0 1 0 4 4" stroke="#2f6b4f"></path></svg>LONGevity LOBsters</a>
+    <div class="tog"><button type="button" id="tog-en" aria-pressed="true">EN</button><button type="button" id="tog-th" aria-pressed="false">ไทย</button></div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+    <span style="font-family:var(--display);font-size:28px;line-height:1.1;color:var(--deep)" data-en="The return" data-th="ผลตอบแทน"></span>
+    <span class="chip chip--sample" data-en="sample data" data-th="ข้อมูลตัวอย่าง"></span>
+  </div>
+  <div style="font-size:14.5px;color:var(--ink-mut)" data-en="What the stack gave back this cycle. Health is the product; this is why it's sustainable." data-th="สิ่งที่สแตกคืนกลับมาในรอบนี้ สุขภาพคือผลิตภัณฑ์ นี่คือเหตุผลที่มันยั่งยืน"></div>
+
+  <!-- income -->
+  <div class="card" style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+      <span class="lane-k" style="font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--tide);text-transform:uppercase" data-en="Income · this cycle" data-th="รายได้ · รอบนี้"></span>
+      <span style="font-size:13px;color:var(--kelp);font-weight:600" data-en="↑ 18% vs last" data-th="↑ 18% จากรอบก่อน"></span>
+    </div>
+    <div><span class="money">฿45,600</span><span style="font-size:15px;color:var(--ink-mut)" data-en=" / month recurring" data-th=" / ต่อเดือน สม่ำเสมอ"></span></div>
+    <div class="funnel">
+      <div class="fstep"><span class="fnum">214</span><div class="fbar"><i style="width:100%;background:#e8c9c0"></i></div><span data-en="gifts claimed" data-th="รับของขวัญ"></span></div>
+      <div class="fstep"><span class="fnum">168</span><div class="fbar"><i style="width:78%;background:var(--tide-wash)"></i></div><span data-en="joined LINE" data-th="ตามเข้าไลน์"></span></div>
+      <div class="fstep"><span class="fnum">121</span><div class="fbar"><i style="width:57%;background:var(--shell-wash)"></i></div><span data-en="finished intake" data-th="ตอบแบบประเมินจบ"></span></div>
+      <div class="fstep"><span class="fnum">24</span><div class="fbar"><i style="width:11%;background:var(--kelp)"></i></div><span data-en="on your roster · ฿1,900" data-th="อยู่ในรอสเตอร์ · ฿1,900"></span></div>
+    </div>
+    <div class="list" style="border-radius:12px">
+      <div class="row"><span data-en="Roster MRR" data-th="รายเดือนจากรอสเตอร์"></span><span class="row-v">฿45,600</span></div>
+      <div class="row"><span data-en="Hive share (2 molted into coaches)" data-th="ส่วนแบ่งรัง (2 คนลอกคราบเป็นโค้ช)"></span><span class="row-v" style="color:var(--kelp)">+฿4,100</span></div>
+      <div class="row"><span data-en="Next cycle target" data-th="เป้ารอบหน้า"></span><span class="row-v" style="color:var(--shell)">฿60,000</span></div>
+    </div>
+  </div>
+
+  <!-- free time -->
+  <div class="card" style="display:flex;flex-direction:column;gap:10px">
+    <span class="lane-k" style="font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--tide);text-transform:uppercase" data-en="Free time · this week" data-th="เวลาว่าง · สัปดาห์นี้"></span>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+      <div class="gauge"><span class="gauge-k" data-en="Hours reclaimed" data-th="ชั่วโมงที่ได้คืน"></span><span class="gauge-v" style="color:var(--kelp)">14</span><span class="gauge-n" data-en="vs 1:1 in-person" data-th="เทียบกับสอนตัวต่อตัว"></span></div>
+      <div class="gauge"><span class="gauge-k" data-en="Morning scan" data-th="สแกนเช้า"></span><span class="gauge-v">5<span style="font-size:18px;color:var(--ink-mut)"> min</span></span><span class="gauge-n" data-en="24 clients, once a day" data-th="24 ลูกค้า วันละรอบ"></span></div>
+    </div>
+    <svg class="spark" viewBox="0 0 330 60" height="60" role="img" aria-label="Coaching hours falling while roster grows">
+      <polyline points="0,14 66,16 132,20 198,26 264,34 330,42" fill="none" stroke="#d8472b" stroke-width="2.5" stroke-linecap="round"></polyline>
+      <polyline points="0,44 66,40 132,34 198,26 264,18 330,10" fill="none" stroke="#2f6b4f" stroke-width="2.5" stroke-linecap="round"></polyline>
+      <text x="0" y="58" font-size="10" fill="#6b7a7d" font-family="JetBrains Mono, monospace">Mar</text>
+      <text x="300" y="58" font-size="10" fill="#6b7a7d" font-family="JetBrains Mono, monospace">now</text>
+    </svg>
+    <div style="display:flex;flex-direction:column;gap:4px;font-size:14px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:3px;background:#2f6b4f;border-radius:2px"></span><span data-en="Roster size (24 and growing)" data-th="ขนาดรอสเตอร์ (24 และโตขึ้น)"></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:3px;background:#d8472b;border-radius:2px"></span><span data-en="Your hours spent coaching" data-th="ชั่วโมงที่คุณใช้โค้ช"></span></div>
+    </div>
+    <div class="list" style="border-radius:12px">
+      <div class="row"><span data-en="Evenings free · 3 of 3" data-th="ค่ำว่าง · 3 จาก 3"></span><span class="row-v" style="color:var(--kelp)" data-en="no more 21:00 check-ins" data-th="ไม่มีเช็คชื่อ 21:00 อีกแล้ว"></span></div>
+      <div class="row"><span data-en="Content hours / week" data-th="ชั่วโมงคอนเทนต์ / สัปดาห์"></span><span class="row-v">4</span></div>
+    </div>
+  </div>
+
+  <!-- the hive -->
+  <div class="hive">
+    <div style="font-family:var(--display);font-size:20px;color:var(--deep)" data-en="The hive · when a lobster molts into a coach" data-th="รัง · เมื่อลอบสเตอร์ลอกคราบเป็นโค้ช"></div>
+    <div style="font-size:14.5px;color:var(--ink-mut)" data-en="Your best clients can grow into coaches on the same stack. You keep a 10% share of every roster they tend — income that no longer costs your evenings." data-th="ลูกค้าที่เก่งที่สุดสามารถโตเป็นโค้ชบนสแตกเดียวกัน คุณได้ส่วนแบ่ง 10% จากรอสเตอร์ที่พวกเขาดูแล — รายได้ที่ไม่ต้องแลกด้วยค่ำวันของคุณ"></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="chip chip--ok">Fah · <span data-en="coaching 6" data-th="ดูแล 6 คน"></span></span>
+      <span class="chip chip--ok">Nam · <span data-en="coaching 3" data-th="ดูแล 3 คน"></span></span>
+    </div>
+    <a class="btn-primary" href="05-your-hub.html" data-en="Back to your hub" data-th="กลับไปบ้านร่างกายคุณ"></a>
+  </div>
+
+  <div style="font-family:var(--display);font-size:17px;line-height:1.35;color:var(--deep);text-align:center;padding:6px 10px 2px" data-en="Money follows mastery. Time follows systems. The molt does both." data-th="เงินตามความเชี่ยวชาญ เวลาตามระบบ การลอกคราบให้ทั้งคู่"></div>
+
+  <div class="tabs">
+    <a href="03-7-me-telemetry.html" data-en="Me" data-th="ฉัน"></a>
+    <a href="05-your-hub.html" data-en="Hub" data-th="บ้าน"></a>
+    <a href="06-coach-console.html" data-en="Coach" data-th="โค้ช"></a>
+    <a href="07-the-return.html" aria-current="page" data-en="Return" data-th="ผลตอบแทน"></a>
+  </div>
+</div>
+
+<script>
+(function () {
+  var L = localStorage.getItem('lob-lang') || 'en';
+  function apply(lang) {
+    L = lang; localStorage.setItem('lob-lang', lang);
+    document.documentElement.setAttribute('data-lang', lang);
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      var t = el.getAttribute('data-' + lang);
+      if (t !== null) el.textContent = t;
+    });
+    document.getElementById('tog-en').setAttribute('aria-pressed', lang === 'en');
+    document.getElementById('tog-th').setAttribute('aria-pressed', lang === 'th');
+    document.title = lang === 'th' ? 'ผลตอบแทน · รายได้และเวลา' : 'The return · income & free time';
+  }
+  document.getElementById('tog-en').onclick = function () { apply('en'); };
+  document.getElementById('tog-th').onclick = function () { apply('th'); };
+  apply(L);
+})();
+</script>
+</body>
+</html>

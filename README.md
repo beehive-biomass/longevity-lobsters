@@ -33,8 +33,9 @@ locally under `assets/`).
 | 5 | Your hub · anti-aging, endometriosis, gym & aerobic — one home | [`pages/05-your-hub.html`](pages/05-your-hub.html) |
 | 6 | The coach's morning · evaluate the roster's wearables in 5 minutes | [`pages/06-coach-console.html`](pages/06-coach-console.html) |
 | 7 | The return · income & free time the stack gives back | [`pages/07-the-return.html`](pages/07-the-return.html) |
+| 8 | Your wallet · four chains, one key (Solana · BNB · Base · Arbitrum) | [`pages/08-your-wallet.html`](pages/08-your-wallet.html) |
 
-## The daily-use layer (screens 5–7)
+## The daily-use layer (screens 5–8)
 
 The seven screens above the fold are the funnel; screens 5–7 are what
 people **open every day** — built in the same design language, with a
@@ -54,6 +55,11 @@ on-device logging:
 - **The return** — the sustainability surface: funnel numbers
   (gift → LINE → intake → roster), recurring income, hours reclaimed vs
   1:1 coaching, and the hive path (clients who molt into coaches).
+- **Your wallet** — self-custody, four chains, one key: one seed derives
+  a Solana key and an EVM key (BNB · Base · Arbitrum share one address).
+  Receive addresses with one-tap copy, USDC payout framing for roster
+  dues and hive share, and standing self-custody honesty (a lost key is
+  lost). Sample addresses only — display surface, no real keys.
 
 ## Provenance
 

@@ -41,6 +41,14 @@ were content-hash deduplicated into `assets/`, and the artifact's internal
 `J*.dc.html` page links were rewired to the real files so the flow is
 navigable.
 
+## Campaign — Bee's influencer launch kit
+
+First client: **Bee** (Bangkok). Her full socials messaging package lives
+in [`campaign/`](campaign/README.md) — funnel map, TikTok/IG/FB/X copy
+deck (EN/ไทย), LINE Official Account flows and 14-day drip, launch
+calendar, and Thailand compliance/PDPA notes. One-line strategy: give the
+gift first, and let the morning after the rave do the selling.
+
 ## Estate
 
 beeHive biomass · beehive-biomass org.
